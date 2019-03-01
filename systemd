@@ -1,0 +1,27 @@
+mkdir -p ~/.config/systemd/user
+
+gedit ~/.config/systemd/user/s3fs.service 
+
+
+[Unit]
+Description=S3FS mounts
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sudo /usr/bin/s3fs -o use_cache=/tmp/cache -o ensure_diskfree=5000 pdztest /home/redhead/plex -o allow_other -o umask=0002 -o uid=1002 -o passwd_file=${HOME}/.passwd-s3fs -o url=http://s3.us-west-1.wasabisys.com -o nonempty
+ExecStop=/usr/bin/sudo /bin/fusermount -u /home/redhead/plex
+
+[Install]
+WantedBy=default.target
+
+
+systemctl --user enable s3fs
+systemctl --user start s3fs
+
+
+systemctl --user stop s3fs
+systemctl --user daemon-reload
+systemctl --user restart s3fs 
