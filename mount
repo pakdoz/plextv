@@ -1,0 +1,7 @@
+sudo s3fs -o use_cache=/tmp/cache -o ensure_diskfree=5000 pakdoztv /tv -o allow_other -o umask=0002 -o passwd_file=/etc/passwd-s3fs -o url=http://s3.us-west-1.wasabisys.com -o nonempty
+
+
+sudo s3fs -o use_cache=/tmp/cache pakdozbarat /barat -o allow_other -o umask=0002 -o passwd_file=/etc/passwd-s3fs -o url=http://s3.us-west-1.wasabisys.com -o nonempty
+
+
+sudo s3fs -o use_cache=/tmp/cache pakdozplex /animasi2 -o allow_other -o umask=0002 -o passwd_file=/etc/passwd-s3fs -o url=http://s3.us-west-1.wasabisys.com -o nonempty
